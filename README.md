@@ -1,2 +1,2 @@
-# nix-config-
+# nix-config
 ❄️ Welcome to my NixOS config 
