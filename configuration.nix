@@ -108,6 +108,10 @@
     git
   ];
 
+  fonts.packages = with pkgs; [
+    meslo-lgs-nf
+  ];
+
   # I use zsh btw
   environment.shells = with pkgs; [ zsh ];
   users.defaultUserShell = pkgs.zsh;

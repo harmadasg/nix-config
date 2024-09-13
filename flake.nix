@@ -15,7 +15,7 @@
     };
   };
 
-  outputs =  { self, nixpkgs, home-manager, plasma-manager, ... }:
+  outputs =  inputs@{ self, nixpkgs, home-manager, ... }:
     let
       system = "x86_64-linux";
       pkgs = nixpkgs.legacyPackages.${system};
@@ -29,9 +29,8 @@
     homeConfigurations = {
       gege =  home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
+        extraSpecialArgs = { inherit inputs; };
         modules = [
-          plasma-manager.homeManagerModules.plasma-manager
-          ./plasma.nix
           ./home.nix
         ];
       };

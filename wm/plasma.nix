@@ -1,6 +1,10 @@
-{ pkgs, ... }:
+{ pkgs, inputs, ... }:
 
 {
+  imports = [
+    inputs.plasma-manager.homeManagerModules.plasma-manager
+  ];
+
   programs.plasma = {
     enable = true;
     # overrideConfig = true; to discard changes made outside plasma-manager

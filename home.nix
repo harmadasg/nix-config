@@ -1,6 +1,11 @@
 { config, pkgs, ... }:
 
 {
+  imports = [
+    ./shell/zsh.nix
+    ./wm/plasma.nix
+  ];
+
   # Home Manager needs a bit of information about you and the paths it should
   # manage.
   home.username = "gege";
@@ -77,14 +82,6 @@
       enable = true;
       userName = "Gergely Harmadas";
       userEmail = "harmadasg@gmail.com";
-    };
-
-    zsh = {
-      enable = true;
-      shellAliases = {
-        ll = "ls -alF";
-        ".." = "cd ..";
-      };
     };
 
   };
