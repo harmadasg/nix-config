@@ -1,9 +1,11 @@
-{ config, pkgs, ... }:
+{ config, pkgs, inputs, ... }:
 
 {
   imports = [
+    inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ./shell/zsh.nix
     ./wm/plasma.nix
+    ./app/vscode.nix
   ];
 
   # Home Manager needs a bit of information about you and the paths it should
@@ -40,6 +42,15 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
+
+  # Used by gmodena/nix-flatpak for declarative management
+  services.flatpak = {
+    enable = true;
+    update.auto = {
+      enable = true;
+      onCalendar = "weekly";
+    };
+  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
