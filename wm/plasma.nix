@@ -16,6 +16,10 @@
       lookAndFeel = "org.kde.breezedark.desktop";
     };
 
+    shortcuts = {
+          "services/kitty.desktop"."_launch" = "Ctrl+Alt+T";
+    };
+
     input = {
       mice = [
         {

@@ -57,11 +57,11 @@
   services.displayManager.sddm.enable = true;
   services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
-  #  environment.plasma6.excludePackages = with pkgs.kdePackages; [
-  #    plasma-browser-integration
-  #    konsole
-  #    oxygen
-  #  ];
+   environment.plasma6.excludePackages = with pkgs.kdePackages; [
+    #  plasma-browser-integration
+     konsole
+    #  oxygen
+   ];
 
   # Configure keymap in X11
   services.xserver.xkb.layout = "us,hu";
@@ -93,6 +93,7 @@
     extraGroups = [ "networkmanager" "wheel" ]; # Enable ‘sudo’ for the user.
     packages = with pkgs; [
       firefox
+      kitty
   #     tree
     ];
   };
