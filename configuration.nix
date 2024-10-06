@@ -7,7 +7,8 @@
 {
   imports =
     [ # Include the results of the hardware scan.
-      ./hardware-configuration.nix
+      ./system/hardware-configuration.nix
+      ./system/sddm.nix
     ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
@@ -54,8 +55,6 @@
   services.xserver.enable = true;
 
   # Enable the KDE Plasma Desktop Environment.
-  services.displayManager.sddm.enable = true;
-  services.displayManager.sddm.wayland.enable = true;
   services.desktopManager.plasma6.enable = true;
    environment.plasma6.excludePackages = with pkgs.kdePackages; [
     #  plasma-browser-integration
