@@ -1,6 +1,46 @@
 { pkgs, inputs, ... }:
 
 {
+  home.packages = [
+    pkgs.nautilus
+  ];
+
+  dconf = {
+    settings = {
+      "org/gnome/desktop/interface" = {
+        color-scheme = "prefer-dark";
+      };
+      "org/gnome/desktop/wm/preferences" = {
+        button-layout = "appmenu:none";
+      };
+    };
+  };
+
+  # Theming
+  qt = {
+    enable = true;
+    platformTheme.name = "gtk";
+  };
+
+  home.pointerCursor = {
+    gtk.enable = true;
+    package = pkgs.bibata-cursors;
+    name = "Bibata-Modern-Classic";
+    size = 24;
+  };
+
+  gtk = {
+    enable = true;
+    theme = {
+      package = pkgs.flat-remix-gtk;
+      name = "Flat-Remix-GTK-Blue-Darkest";
+    };
+    iconTheme = {
+      package = pkgs.adwaita-icon-theme;
+      name = "Adwaita";
+    };
+  };
+
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
 
@@ -42,7 +82,7 @@
 
       # Set programs that you use
       "$terminal" = "kitty";
-      "$fileManager" = "dolphin";
+      "$fileManager" = "nautilus";
       "$menu" = "wofi --show drun";
 
 
@@ -274,11 +314,13 @@
       # Example windowrule v2
       # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
 
-      # Ignore maximize requests from apps. You'll probably like this.
-      windowrulev2 = "suppressevent maximize, class:.*";
+      windowrulev2 = [
+        # Ignore maximize requests from apps. You'll probably like this.
+        "suppressevent maximize, class:.*"
 
-      # Fix some dragging issues with XWayland
-      windowrulev2 = "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0";
+        # Fix some dragging issues with XWayland
+        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+      ];
     };
   };
 }
