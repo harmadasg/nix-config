@@ -4,7 +4,8 @@
   imports = [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ./shell/zsh.nix
-    ./wm/plasma.nix
+    # ./wm/plasma.nix
+    ./wm/hyprland.nix
     ./app/vscode.nix
     ./app/kitty.nix
   ];

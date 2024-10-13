@@ -9,7 +9,8 @@
     [ # Include the results of the hardware scan.
       ./system/hardware-configuration.nix
       ./system/sddm.nix
-      ./system/wm/plasma.nix
+      # ./system/wm/plasma.nix
+      ./system/wm/hyprland.nix
     ];
 
   # Enable the Flakes feature and the accompanying new nix command-line tool
