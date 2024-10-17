@@ -8,9 +8,13 @@
     ./wm/hyprland/default.nix
     ./app/vscode.nix
     ./app/kitty.nix
+    ./app/discord.nix
+    ./app/lutris.nix
+    ./app/portfolio.nix
+    ./app/steam.nix
   ];
 
-  # Home Manager needs a bit of information about you and the paths it should
+  # Home Manager needs a wofibit of information about you and the paths it should
   # manage.
   home.username = "gege";
   home.homeDirectory = "/home/gege";
