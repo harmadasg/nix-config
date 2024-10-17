@@ -33,7 +33,7 @@
         "temperature"
         "backlight"
         "keyboard-state"
-        "sway/language"
+        "hyprland/language"
         "battery"
         "battery#bat2"
         "clock"
@@ -61,7 +61,7 @@
           unlocked = "";
         };
       };
-      "sway/mode" = {
+      "hyprland/submap" = {
         format = "<span style=\"italic\">{}</span>";
       };
       "sway/scratchpad" = {

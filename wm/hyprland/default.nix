@@ -3,11 +3,25 @@
 {
   imports = [
     ./waybar.nix
+    ./hyprlock.nix
+    ./hypridle.nix
   ];
 
   home.packages = with pkgs; [
     nautilus
     wofi
+    wl-clipboard
+    hyprshot
+    swaynotificationcenter
+    (cliphist.overrideAttrs (_old: {
+      src = pkgs.fetchFromGitHub {
+        owner = "sentriz";
+        repo = "cliphist";
+        rev = "c49dcd26168f704324d90d23b9381f39c30572bd";
+        sha256 = "sha256-2mn55DeF8Yxq5jwQAjAcvZAwAg+pZ4BkEitP6S2N0HY=";
+      };
+      vendorHash = "sha256-M5n7/QWQ5POWE4hSCMa0+GOVhEDCOILYqkSYIGoy/l0=";
+    }))
   ];
 
   dconf = {
@@ -89,6 +103,7 @@
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
       "$menu" = "wofi --show drun";
+      "$clipboard" = "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
 
 
       #################
@@ -101,7 +116,11 @@
       # exec-once = $terminal
       # exec-once = nm-applet &
       # exec-once = waybar & hyprpaper & firefox
-      exec-once = "waybar";
+      exec-once = [
+        "waybar & swaync & hypridle"
+        "wl-paste --type text --watch cliphist store" # Stores only text data
+        "wl-paste --type image --watch cliphist store" # Stores only image data
+      ];
 
 
       #############################
@@ -245,15 +264,21 @@
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind = [
-        "$mainMod, Q, exec, $terminal"
+        "$mainMod, return, exec, $terminal"
         "$mainMod, F, exec, firefox"
         "$mainMod, C, killactive,"
         "$mainMod, M, exit,"
         "$mainMod, E, exec, $fileManager"
-        "$mainMod, V, togglefloating,"
-        "$mainMod, R, exec, $menu"
+        "$mainMod, B, togglefloating,"
+        "$mainMod, space, exec, $menu"
+        "$mainMod, V, exec, $clipboard"
+        "$mainMod_SHIFT, L, exec, hyprlock"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, J, togglesplit," # dwindle
+
+        # Screenshot
+        ", PRINT, exec, hyprshot -m window"
+        "shift, PRINT, exec, hyprshot -m region"
 
         # Move focus with mainMod + arrow keys
         "$mainMod, left, movefocus, l"
