@@ -69,6 +69,13 @@
     #jack.enable = true;
   };
 
+  # Hardware accelerated graphics
+  hardware.graphics = {
+    enable = true;
+    enable32Bit = true;
+  };
+  services.xserver.videoDrivers = ["amdgpu"];
+
   # Enable touchpad support (enabled default in most desktopManager).
   # services.libinput.enable = true;
 
@@ -80,7 +87,10 @@
     packages = with pkgs; [
       firefox
       kitty
-  #     tree
+      mpv
+      tree
+      btop
+      ranger
     ];
   };
 
