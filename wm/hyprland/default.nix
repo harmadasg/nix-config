@@ -9,7 +9,7 @@
 
   home.packages = with pkgs; [
     nautilus
-    wofi
+    rofi-wayland
     wl-clipboard
     hyprshot
     swaynotificationcenter
@@ -102,8 +102,8 @@
       # Set programs that you use
       "$terminal" = "kitty";
       "$fileManager" = "nautilus";
-      "$menu" = "wofi --show drun";
-      "$clipboard" = "cliphist list | wofi --dmenu | cliphist decode | wl-copy";
+      "$menu" = "rofi -show drun";
+      "$clipboard" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
 
 
       #################
