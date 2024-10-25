@@ -91,6 +91,8 @@
       tree
       btop
       ranger
+      fd
+      ripgrep
     ];
   };
 

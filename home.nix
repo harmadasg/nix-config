@@ -12,6 +12,7 @@
     ./app/lutris.nix
     ./app/portfolio.nix
     ./app/steam.nix
+    ./app/neovim.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
