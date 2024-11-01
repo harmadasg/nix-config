@@ -14,13 +14,18 @@ let
   ;
 in
 {
-  services.displayManager.sddm = {
-    enable = true;
-    wayland = {
+  services.displayManager = {
+    autoLogin = {
+      user = "gege";
+    };
+    sddm = {
       enable = true;
-      compositor = "kwin";
-    }; 
-    autoNumlock = true;
+      wayland = {
+        enable = true;
+        compositor = "kwin";
+      }; 
+      autoNumlock = true;
+    };
   };
 
   # TODO Clean up and source this from a single location for both system and home config

@@ -5,60 +5,16 @@
     ./waybar.nix
     ./hyprlock.nix
     ./hypridle.nix
+    ./rofi.nix
   ];
 
   home.packages = with pkgs; [
-    nautilus
-    rofi-wayland
+    xfce.thunar
     wl-clipboard
     hyprshot
     swaynotificationcenter
-    (cliphist.overrideAttrs (_old: {
-      src = pkgs.fetchFromGitHub {
-        owner = "sentriz";
-        repo = "cliphist";
-        rev = "c49dcd26168f704324d90d23b9381f39c30572bd";
-        sha256 = "sha256-2mn55DeF8Yxq5jwQAjAcvZAwAg+pZ4BkEitP6S2N0HY=";
-      };
-      vendorHash = "sha256-M5n7/QWQ5POWE4hSCMa0+GOVhEDCOILYqkSYIGoy/l0=";
-    }))
+    cliphist
   ];
-
-  dconf = {
-    settings = {
-      "org/gnome/desktop/interface" = {
-        color-scheme = "prefer-dark";
-      };
-      "org/gnome/desktop/wm/preferences" = {
-        button-layout = "appmenu:none";
-      };
-    };
-  };
-
-  # Theming
-  qt = {
-    enable = true;
-    platformTheme.name = "gtk";
-  };
-
-  home.pointerCursor = {
-    gtk.enable = true;
-    package = pkgs.bibata-cursors;
-    name = "Bibata-Modern-Classic";
-    size = 24;
-  };
-
-  gtk = {
-    enable = true;
-    theme = {
-      package = pkgs.flat-remix-gtk;
-      name = "Flat-Remix-GTK-Blue-Darkest";
-    };
-    iconTheme = {
-      package = pkgs.adwaita-icon-theme;
-      name = "Adwaita";
-    };
-  };
 
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
@@ -101,7 +57,7 @@
 
       # Set programs that you use
       "$terminal" = "kitty";
-      "$fileManager" = "nautilus";
+      "$fileManager" = "thunar";
       "$menu" = "rofi -show drun";
       "$clipboard" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
 
@@ -117,7 +73,6 @@
       # exec-once = nm-applet &
       # exec-once = waybar & hyprpaper & firefox
       exec-once = [
-        "waybar & swaync & hypridle"
         "wl-paste --type text --watch cliphist store" # Stores only text data
         "wl-paste --type image --watch cliphist store" # Stores only image data
       ];
@@ -149,8 +104,8 @@
           border_size = 2;
 
           # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-          "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          "col.inactive_border" = "rgba(595959aa)";
+          # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
+          # "col.inactive_border" = "rgba(595959aa)";
 
           # Set to true enable resizing windows by clicking and dragging on borders and gaps
           resize_on_border = false;
@@ -172,7 +127,7 @@
           drop_shadow = true;
           shadow_range = 4;
           shadow_render_power = 3;
-          "col.shadow" = "rgba(1a1a1aee)";
+          # "col.shadow" = "rgba(1a1a1aee)";
 
           # https://wiki.hyprland.org/Configuring/Variables/#blur
           blur = {
@@ -231,6 +186,7 @@
           kb_model = "";
           kb_options = "grp:alt_space_toggle";
           kb_rules = "";
+          numlock_by_default = true;
 
           follow_mouse = 1;
 
@@ -272,7 +228,7 @@
         "$mainMod, B, togglefloating,"
         "$mainMod, space, exec, $menu"
         "$mainMod, V, exec, $clipboard"
-        "$mainMod_SHIFT, L, exec, hyprlock"
+        "$mainMod, L, exec, hyprlock"
         "$mainMod, P, pseudo," # dwindle
         "$mainMod, J, togglesplit," # dwindle
 

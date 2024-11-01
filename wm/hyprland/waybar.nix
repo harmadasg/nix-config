@@ -1,15 +1,11 @@
 { pkgs, inputs, ... }:
 
 {
-  home.packages = with pkgs; [
-    waybar
-  ];
-
   programs.waybar = {
     enable = true;
+    systemd.enable = true;
 
-    settings = {
-      mainBar = {
+    settings = [ {
       # "layer": "top"; # Waybar at top layer
       # "position": "bottom"; # Waybar position (top|bottom|left|right)
       height = 30; # Waybar height (to be removed for auto height)
@@ -214,7 +210,7 @@
             hibernate = "systemctl hibernate";
           };
         };
-      };
-    };
+      }
+    ];
   };  
 }

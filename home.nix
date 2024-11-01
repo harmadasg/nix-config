@@ -8,11 +8,13 @@
     ./wm/hyprland/default.nix
     ./app/vscode.nix
     ./app/kitty.nix
+    ./app/btop.nix
     ./app/discord.nix
     ./app/lutris.nix
     ./app/portfolio.nix
     ./app/steam.nix
     ./app/neovim.nix
+    ./user/style/stylix.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
