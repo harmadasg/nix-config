@@ -24,7 +24,7 @@ with config.lib.stylix.colors;
       # BACKGROUND
       background = {
           monitor = "";
-          path = "${./../../themes/${userSettings.theme}.jpg}";
+          path = "${./../../assets/${userSettings.theme}.jpg}";
           blur_passes = 2;
           color = "$base";
       };
@@ -57,7 +57,7 @@ with config.lib.stylix.colors;
       # USER AVATAR
       image = {
           monitor = "DP-4";
-          path = "${./../face}";
+          path = "${./../../assets/face}";
           size = 96;
           border_color = "$accent";
 

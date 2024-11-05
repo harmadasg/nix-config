@@ -3,18 +3,11 @@
 {
   imports = [
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    ./shell/zsh.nix
-    # ./wm/plasma.nix
-    ./wm/hyprland/default.nix
-    ./app/vscode.nix
-    ./app/kitty.nix
-    ./app/btop.nix
-    ./app/discord.nix
-    ./app/lutris.nix
-    ./app/portfolio.nix
-    ./app/steam.nix
-    ./app/neovim.nix
-    ./user/style/stylix.nix
+    ./../../user/app
+    ./../../user/wm/hyprland
+    ./../../user/shell/zsh.nix
+    ./../../user/style/stylix.nix
+    # ./../../user/wm/plasma/plasma.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
@@ -33,7 +26,7 @@
 
   # The home.packages option allows you to install Nix packages into your
   # environment.
-  home.packages = [
+  home.packages = with pkgs; [
     # # Adds the 'hello' command to your environment. It prints a friendly
     # # "Hello, world!" when run.
     # pkgs.hello
@@ -51,15 +44,6 @@
     #   echo "Hello, ${config.home.username}!"
     # '')
   ];
-
-  # Used by gmodena/nix-flatpak for declarative management
-  services.flatpak = {
-    enable = true;
-    update.auto = {
-      enable = true;
-      onCalendar = "weekly";
-    };
-  };
 
   # Home Manager is pretty good at managing dotfiles. The primary way to manage
   # plain files is through 'home.file'.
@@ -93,18 +77,13 @@
   #  /etc/profiles/per-user/gege/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "vim";
+    EDITOR = "nvim";
   };
 
-  programs = {
-
-    git = {
-      enable = true;
-      userName = "Gergely Harmadas";
-      userEmail = "harmadasg@gmail.com";
-    };
-
-  };
+  # MIME types
+  # xdg.mimeApps.enable = true;
+  # xdg.mimeApps.associations.added = {
+  # };  
 
   # Let Home Manager install and manage itself.
   programs.home-manager.enable = true;

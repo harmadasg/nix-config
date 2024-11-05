@@ -3,6 +3,10 @@
 {
   home.packages = with pkgs; [
     fastfetch
+    fd
+    ripgrep
+    eza
+    bat
   ];
 
   programs.zsh = {

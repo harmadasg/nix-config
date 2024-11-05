@@ -3,16 +3,13 @@
 {
   imports = [
     inputs.stylix.homeManagerModules.stylix
-    ./../../themes
+    ./../../themes/${userSettings.theme}.nix
   ];
 
   home.packages = with pkgs; [
     libsForQt5.qt5ct
     qt6ct
   ];
-
-  # custom setting
-  themes.${userSettings.theme}.enable = true;
 
   stylix = {
     enable = true;
