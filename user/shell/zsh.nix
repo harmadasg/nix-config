@@ -32,6 +32,8 @@
     shellAliases = {
       ll = "ls -alF";
       ".." = "cd ..";
+      vi = "nvim";
+      vim = "nvim";
     };
 
     history = {

@@ -38,7 +38,7 @@
       gege =  home-manager.lib.homeManagerConfiguration {
         inherit pkgs;
         extraSpecialArgs = {
-          inherit inputs userSettings;
+          inherit inputs userSettings systemSettings;
         };
         modules = [ ./profiles/${profile}/home.nix ];
       };

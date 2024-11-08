@@ -9,5 +9,12 @@
     #   sha256 = "1199a43751f1234d3fb92ecf614fbf34de2c07334d3fdd355891044f51bddada";
     # };
     polarity = "dark";
+
+    targets.nixvim.enable = false;
+  };
+
+  programs.nixvim.colorschemes.catppuccin = {
+    enable = true;
+    settings.flavour = "mocha";
   };
 }
