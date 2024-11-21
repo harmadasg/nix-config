@@ -1,6 +1,8 @@
-{ pkgs, inputs, ... }:
-
 {
+  pkgs,
+  inputs,
+  ...
+}: {
   imports = [
     ./waybar.nix
     ./hyprlock.nix
@@ -25,7 +27,6 @@
     # Hyprland configuration written in Nix. Entries with the same key should be written as lists.
     # Variables' and colors' names should be quoted. See https://wiki.hyprland.org for more examples.
     settings = {
-
       # This is an example Hyprland config file.
       # Refer to the wiki for more information.
       # https://wiki.hyprland.org/Configuring/Configuring-Hyprland/
@@ -37,17 +38,15 @@
       # Create your files separately and then link them to this file like this:
       # source = ~/.config/hypr/myColors.conf
 
-
       ################
       ### MONITORS ###
       ################
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
       monitor = [
-        "DP-1, 2560x1440, 0x0, 1"
+        "DP-1, 2560x1440@144, 0x0, 1"
         "DP-4, 3840x2160, 2560x0, 1.5"
       ];
-
 
       ###################
       ### MY PROGRAMS ###
@@ -60,7 +59,6 @@
       "$fileManager" = "thunar";
       "$menu" = "rofi -show drun";
       "$clipboard" = "cliphist list | rofi -dmenu | cliphist decode | wl-copy";
-
 
       #################
       ### AUTOSTART ###
@@ -77,7 +75,6 @@
         "wl-paste --type image --watch cliphist store" # Stores only image data
       ];
 
-
       #############################
       ### ENVIRONMENT VARIABLES ###
       #############################
@@ -89,7 +86,6 @@
         "HYPRCURSOR_SIZE,24"
       ];
 
-
       #####################
       ### LOOK AND FEEL ###
       #####################
@@ -97,83 +93,79 @@
       # Refer to https://wiki.hyprland.org/Configuring/Variables/
 
       # https://wiki.hyprland.org/Configuring/Variables/#general
-      general = { 
-          gaps_in = 5;
-          gaps_out = 20;
+      general = {
+        gaps_in = 5;
+        gaps_out = 20;
 
-          border_size = 2;
+        border_size = 2;
 
-          # https://wiki.hyprland.org/Configuring/Variables/#variable-types for info about colors
-          # "col.active_border" = "rgba(33ccffee) rgba(00ff99ee) 45deg";
-          # "col.inactive_border" = "rgba(595959aa)";
+        # Set to true enable resizing windows by clicking and dragging on borders and gaps
+        resize_on_border = false;
 
-          # Set to true enable resizing windows by clicking and dragging on borders and gaps
-          resize_on_border = false;
+        # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
+        allow_tearing = false;
 
-          # Please see https://wiki.hyprland.org/Configuring/Tearing/ before you turn this on
-          allow_tearing = false;
-
-          layout = "dwindle";
+        layout = "dwindle";
       };
 
       # https://wiki.hyprland.org/Configuring/Variables/#decoration
       decoration = {
-          rounding = 10;
+        rounding = 10;
 
-          # Change transparency of focused and unfocused windows
-          active_opacity = 1.0;
-          inactive_opacity = 1.0;
+        # Change transparency of focused and unfocused windows
+        active_opacity = 1.0;
+        inactive_opacity = 1.0;
 
-          drop_shadow = true;
-          shadow_range = 4;
-          shadow_render_power = 3;
-          # "col.shadow" = "rgba(1a1a1aee)";
+        shadow = {
+          enabled = true;
+          range = 4;
+          render_power = 3;
+        };
 
-          # https://wiki.hyprland.org/Configuring/Variables/#blur
-          blur = {
-              enabled = true;
-              size = 3;
-              passes = 1;
-              
-              vibrancy = 0.1696;
-          };
+        # https://wiki.hyprland.org/Configuring/Variables/#blur
+        blur = {
+          enabled = true;
+          size = 3;
+          passes = 1;
+
+          vibrancy = 0.1696;
+        };
       };
 
       # https://wiki.hyprland.org/Configuring/Variables/#animations
       animations = {
-          enabled = true;
+        enabled = true;
 
-          # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
+        # Default animations, see https://wiki.hyprland.org/Configuring/Animations/ for more
 
-          bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
+        bezier = "myBezier, 0.05, 0.9, 0.1, 1.05";
 
-          animation = [
-            "windows, 1, 7, myBezier"
-            "windowsOut, 1, 7, default, popin 80%"
-            "border, 1, 10, default"
-            "borderangle, 1, 8, default"
-            "fade, 1, 7, default"
-            "workspaces, 1, 6, default"
-          ];
+        animation = [
+          "windows, 1, 7, myBezier"
+          "windowsOut, 1, 7, default, popin 80%"
+          "border, 1, 10, default"
+          "borderangle, 1, 8, default"
+          "fade, 1, 7, default"
+          "workspaces, 1, 6, default"
+        ];
       };
 
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle = {
-          pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
-          preserve_split = true; # You probably want this
+        pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
+        preserve_split = true; # You probably want this
       };
 
       # See https://wiki.hyprland.org/Configuring/Master-Layout/ for more
       master = {
-          new_status = "master";
+        new_status = "master";
       };
 
       # https://wiki.hyprland.org/Configuring/Variables/#misc
-      misc = { 
-          force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
-          disable_hyprland_logo = false; # If true disables the random hyprland logo / anime girl background. :(
+      misc = {
+        force_default_wallpaper = -1; # Set to 0 or 1 to disable the anime mascot wallpapers
+        disable_hyprland_logo = false; # If true disables the random hyprland logo / anime girl background. :(
       };
-
 
       #############
       ### INPUT ###
@@ -181,21 +173,21 @@
 
       # https://wiki.hyprland.org/Configuring/Variables/#input
       input = {
-          kb_layout = "us,hu";
-          kb_variant = "";
-          kb_model = "";
-          kb_options = "grp:alt_space_toggle";
-          kb_rules = "";
-          numlock_by_default = true;
+        kb_layout = "us,hu";
+        kb_variant = "";
+        kb_model = "";
+        kb_options = "grp:alt_space_toggle";
+        kb_rules = "";
+        numlock_by_default = true;
 
-          follow_mouse = 1;
+        follow_mouse = 1;
 
-          sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
-          accel_profile = "flat";
+        sensitivity = 0; # -1.0 - 1.0, 0 means no modification.
+        accel_profile = "flat";
 
-          # touchpad = {
-          #     natural_scroll = false;
-          # };
+        # touchpad = {
+        #     natural_scroll = false;
+        # };
       };
 
       # https://wiki.hyprland.org/Configuring/Variables/#gestures
@@ -210,7 +202,6 @@
       #     sensitivity = -0.5;
       # };
 
-
       ###################
       ### KEYBINDINGS ###
       ###################
@@ -219,49 +210,51 @@
       "$mainMod" = "SUPER"; # Sets "Windows" key as main modifier
 
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
-      bind = [
-        "$mainMod, return, exec, $terminal"
-        "$mainMod, F, exec, firefox"
-        "$mainMod, C, killactive,"
-        "$mainMod, M, exit,"
-        "$mainMod, E, exec, $fileManager"
-        "$mainMod, B, togglefloating,"
-        "$mainMod, space, exec, $menu"
-        "$mainMod, V, exec, $clipboard"
-        "$mainMod, L, exec, hyprlock"
-        "$mainMod, P, pseudo," # dwindle
-        "$mainMod, J, togglesplit," # dwindle
+      bind =
+        [
+          "$mainMod, return, exec, $terminal"
+          "$mainMod, F, exec, firefox"
+          "$mainMod, C, killactive,"
+          "$mainMod, M, exit,"
+          "$mainMod, E, exec, $fileManager"
+          "$mainMod, B, togglefloating,"
+          "$mainMod, space, exec, $menu"
+          "$mainMod, V, exec, $clipboard"
+          "$mainMod, L, exec, hyprlock"
+          "$mainMod, P, pseudo," # dwindle
+          "$mainMod, J, togglesplit," # dwindle
 
-        # Screenshot
-        ", PRINT, exec, hyprshot -m window"
-        "shift, PRINT, exec, hyprshot -m region"
+          # Screenshot
+          ", PRINT, exec, hyprshot -m window"
+          "shift, PRINT, exec, hyprshot -m region"
 
-        # Move focus with mainMod + arrow keys
-        "$mainMod, left, movefocus, l"
-        "$mainMod, right, movefocus, r"
-        "$mainMod, up, movefocus, u"
-        "$mainMod, down, movefocus, d"
+          # Move focus with mainMod + arrow keys
+          "$mainMod, left, movefocus, l"
+          "$mainMod, right, movefocus, r"
+          "$mainMod, up, movefocus, u"
+          "$mainMod, down, movefocus, d"
 
-        # Example special workspace (scratchpad)
-        "$mainMod, S, togglespecialworkspace, magic"
-        "$mainMod SHIFT, S, movetoworkspace, special:magic"
+          # Example special workspace (scratchpad)
+          "$mainMod, S, togglespecialworkspace, magic"
+          "$mainMod SHIFT, S, movetoworkspace, special:magic"
 
-        # Scroll through existing workspaces with mainMod + scroll
-        "$mainMod, mouse_down, workspace, e+1"
-        "$mainMod, mouse_up, workspace, e-1"
-      ]
-      ++ (
-        # workspaces
-        # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
-        builtins.concatLists (builtins.genList (i:
-            let ws = i + 1;
-            in [
-              "$mainMod, code:1${toString i}, workspace, ${toString ws}"
-              "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
-            ]
-          )
-          10)
-      );
+          # Scroll through existing workspaces with mainMod + scroll
+          "$mainMod, mouse_down, workspace, e+1"
+          "$mainMod, mouse_up, workspace, e-1"
+        ]
+        ++ (
+          # workspaces
+          # binds $mod + [shift +] {1..10} to [move to] workspace {1..10}
+          builtins.concatLists (builtins.genList (
+              i: let
+                ws = i + 1;
+              in [
+                "$mainMod, code:1${toString i}, workspace, ${toString ws}"
+                "$mainMod SHIFT, code:1${toString i}, movetoworkspace, ${toString ws}"
+              ]
+            )
+            10)
+        );
 
       bindm = [
         # Move/resize windows with mainMod + LMB/RMB and dragging
@@ -286,7 +279,6 @@
         ", XF86AudioPlay, exec, playerctl play-pause"
         ", XF86AudioPrev, exec, playerctl previous"
       ];
-
 
       ##############################
       ### WINDOWS AND WORKSPACES ###

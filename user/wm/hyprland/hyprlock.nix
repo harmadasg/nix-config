@@ -74,14 +74,9 @@ with config.lib.stylix.colors;
         dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8
         dots_spacing = 0.2; # Scale of dots' absolute size, -1.0 - 1.0
         dots_center = true;
-        outer_color = "$accent";
-        inner_color = "$surface";
-        font_color = "$text";
         fade_on_empty = false;
         placeholder_text = "<span foreground=\"##$textAlpha\"><i>󰌾 Logged in as </i><span foreground=\"##$accentAlpha\">$USER</span></span>"; # Text rendered in the input box when it's empty.
         hide_input = false;
-        check_color = "$accent";
-        fail_color = "$red"; # if authentication failed, changes outer_color and fail message color
         fail_text = "<i>$FAIL <b>($ATTEMPTS)</b></i>"; # can be set to empty
         capslock_color = "$yellow";
         position = "0, -35";
