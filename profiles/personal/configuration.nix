@@ -15,6 +15,7 @@
     ./../../system/hardware/graphics.nix
     ./../../system/hardware/sound.nix
     ./../../system/hardware/bluetooth.nix
+    ./../../system/hardware/controller.nix
     ./../../system/misc/i18n.nix
     ./../../system/misc/console.nix
     ./../../system/security/sshd.nix
