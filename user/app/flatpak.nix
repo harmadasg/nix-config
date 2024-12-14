@@ -4,19 +4,9 @@
   ...
 }: let
   steam = "com.valvesoftware.Steam";
+  steamUserId = "247800368";
+  lutris = "net.lutris.Lutris";
 in {
-  services.flatpak.packages = [
-    "net.lutris.Lutris"
-    # Check Arch Wiki if rich presence does not work
-    "com.discordapp.Discord"
-    "info.portfolio_performance.PortfolioPerformance"
-    steam
-    "com.calibre_ebook.calibre"
-    "org.qbittorrent.qBittorrent"
-    "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08" # this branch supports Lutris integration
-    "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08" # this branch supports Steam integration
-  ];
-
   # Used by gmodena/nix-flatpak for declarative management
   services.flatpak = {
     enable = true;
@@ -24,6 +14,39 @@ in {
     update.auto = {
       enable = true;
       onCalendar = "weekly";
+    };
+    packages = [
+      lutris
+      "com.github.tchx84.Flatseal"
+      # Check Arch Wiki if rich presence does not work
+      "com.discordapp.Discord"
+      "info.portfolio_performance.PortfolioPerformance"
+      steam
+      "com.calibre_ebook.calibre"
+      "org.qbittorrent.qBittorrent"
+      "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/23.08" # this branch supports Lutris integration
+      "org.freedesktop.Platform.VulkanLayer.MangoHud/x86_64/24.08" # this branch supports Steam integration
+    ];
+
+    overrides = {
+      "${lutris}" = {
+        Context = {
+          filesystems = [
+            # Needed in order to make steam shortcuts from Lutris
+            "~/.var/app/com.valvesoftware.Steam/data/Steam/userdata/${steamUserId}/config/shortcuts.vdf"
+          ];
+        };
+      };
+      ${steam} = {
+        Context = {
+          filesystems = [
+            "~/.config/MangoHud:ro"
+          ];
+        };
+        "Session Bus Policy" = {
+          "org.freedesktop.Flatpak" = "talk";
+        };
+      };
     };
   };
 
@@ -36,4 +59,3 @@ in {
       ln -sf ${homeDir}/.var/app/${steam}/.steam ${homeDir}/.steam
     '';
 }
-
