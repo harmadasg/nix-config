@@ -10,5 +10,6 @@
     ./ranger.nix
     ./mpv.nix
     ./git.nix
+    ./lutris.nix
   ];
 }

@@ -17,32 +17,44 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    # Temp usage until upstream package is released
+    # https://github.com/NixOS/nixpkgs/pull/369259
+    umu = {
+      url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     stylix.url = "github:danth/stylix";
   };
 
-  outputs =  inputs@{ self, nixpkgs, home-manager, ... }:
-    with import ./settings.nix;
-    let
-      pkgs = nixpkgs.legacyPackages.${systemSettings.system};
-      system = systemSettings.system;
+  outputs = inputs @ {
+    self,
+    nixpkgs,
+    home-manager,
+    ...
+  }:
+    with import ./settings.nix; let
       profile = systemSettings.profile;
+      commonArgs = {
+        system = systemSettings.system;
+        config.allowUnfree = true;
+      };
+      pkgs = import nixpkgs commonArgs;
     in {
-    nixosConfigurations = {
-      nixos = nixpkgs.lib.nixosSystem {
-        inherit system;
-        modules = [ ./profiles/${profile}/configuration.nix ];
-      };
-    };
-    homeConfigurations = {
-      gege =  home-manager.lib.homeManagerConfiguration {
-        inherit pkgs;
-        extraSpecialArgs = {
-          inherit inputs userSettings systemSettings;
+      nixosConfigurations = {
+        nixos = nixpkgs.lib.nixosSystem {
+          inherit pkgs;
+          modules = [./profiles/${profile}/configuration.nix];
         };
-        modules = [ ./profiles/${profile}/home.nix ];
+      };
+      homeConfigurations = {
+        gege = home-manager.lib.homeManagerConfiguration {
+          inherit pkgs;
+          extraSpecialArgs = {
+            inherit inputs userSettings systemSettings;
+          };
+          modules = [./profiles/${profile}/home.nix];
+        };
       };
     };
-  };
-
 }

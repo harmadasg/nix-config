@@ -21,7 +21,8 @@
     ./../../system/security/sshd.nix
     ./../../system/app/flatpak.nix
     ./../../system/app/sunshine.nix
-    # ./../../system/wm//plasma.nix
+    ./../../system/app/steam.nix
+    # ./../../system/wm/plasma.nix
     ./../../system/wm/hyprland.nix
   ];
 
@@ -39,9 +40,6 @@
       };
     };
   };
-
-  # Allow unfree packages
-  nixpkgs.config.allowUnfree = true;
 
   # Copy the NixOS configuration file and link it from the resulting system
   # (/run/current-system/configuration.nix). This is useful in case you
