@@ -18,6 +18,7 @@ in
     autoLogin = {
       user = "gege";
     };
+    defaultSession = "hyprland";
     sddm = {
       enable = true;
       wayland = {
