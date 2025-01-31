@@ -20,6 +20,7 @@
     ./../../system/misc/console.nix
     ./../../system/security/sshd.nix
     ./../../system/app/flatpak.nix
+    ./../../system/app/sunshine.nix
     ./../../system/app/steam.nix
     # ./../../system/wm/plasma.nix
     ./../../system/wm/hyprland.nix
