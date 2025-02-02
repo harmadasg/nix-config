@@ -44,6 +44,9 @@
       nixosConfigurations = {
         nixos = nixpkgs.lib.nixosSystem {
           inherit pkgs;
+          specialArgs = {
+            inherit inputs userSettings systemSettings;
+          };
           modules = [./profiles/${profile}/configuration.nix];
         };
       };

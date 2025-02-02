@@ -10,12 +10,8 @@
     # Include the results of the hardware scan.
     ./../../system/hardware-configuration.nix
     ./../../system/wm/sddm.nix
-    ./../../system/hardware/boot.nix
-    ./../../system/hardware/networking.nix
-    ./../../system/hardware/graphics.nix
-    ./../../system/hardware/sound.nix
-    ./../../system/hardware/bluetooth.nix
-    ./../../system/hardware/controller.nix
+    ./../../system/hardware
+    ./../../system/bin/phoenix.nix
     ./../../system/misc/i18n.nix
     ./../../system/misc/console.nix
     ./../../system/security/sshd.nix
