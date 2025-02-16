@@ -17,12 +17,6 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    # Temp usage until upstream package is released
-    # https://github.com/NixOS/nixpkgs/pull/369259
-    umu = {
-      url = "github:Open-Wine-Components/umu-launcher?dir=packaging/nix";
-      inputs.nixpkgs.follows = "nixpkgs";
-    };
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     stylix.url = "github:danth/stylix";
   };
@@ -38,6 +32,14 @@
       commonArgs = {
         system = systemSettings.system;
         config.allowUnfree = true;
+        overlays = [
+          (final: prev: {
+            oranchelo-icon-theme = prev.oranchelo-icon-theme.overrideAttrs {
+              # FIXME: https://github.com/NixOS/nixpkgs/issues/380279
+              dontCheckForBrokenSymlinks = true;
+            };
+          })
+        ];
       };
       pkgs = import nixpkgs commonArgs;
     in {
