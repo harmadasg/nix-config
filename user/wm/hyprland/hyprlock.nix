@@ -26,7 +26,8 @@ with config.lib.stylix.colors;
           monitor = "";
           path = "${./../../assets/${userSettings.theme}.jpg}";
           blur_passes = 2;
-          color = "$base";
+          # stylix takes care, should rework hyprlock config anyway
+          # color = "$base";
       };
 
       label = [

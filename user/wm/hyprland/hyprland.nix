@@ -300,6 +300,10 @@
 
         # Fix some dragging issues with XWayland
         "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
+
+        # https://github.com/hyprwm/Hyprland/issues/9170
+        # https://github.com/hyprwm/Hyprland/issues/6568
+        "idleinhibit fullscreen, class:.*"
       ];
     };
   };
