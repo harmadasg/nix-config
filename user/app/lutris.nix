@@ -5,6 +5,7 @@
         # List library dependencies here
         pkgs.wine
         pkgs.umu-launcher
+        pkgs.mangohud
       ];
     })
   ];
