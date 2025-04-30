@@ -11,5 +11,6 @@
     ./mpv.nix
     ./git.nix
     ./lutris.nix
+    ./idea.nix
   ];
 }
