@@ -17,6 +17,7 @@
       url = "github:nix-community/nixvim";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nur.url = "github:nix-community/nur";
     nix-flatpak.url = "github:gmodena/nix-flatpak";
     stylix.url = "github:danth/stylix";
   };
@@ -33,6 +34,7 @@
         system = systemSettings.system;
         config.allowUnfree = true;
         overlays = [
+          inputs.nur.overlays.default
           (final: prev: {
             oranchelo-icon-theme = prev.oranchelo-icon-theme.overrideAttrs {
               # FIXME: https://github.com/NixOS/nixpkgs/issues/380279
