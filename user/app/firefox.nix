@@ -2,11 +2,12 @@
   config,
   pkgs,
   inputs,
+  userSettings,
   ...
 }: {
   programs.firefox = {
     enable = true;
-    profiles.gege = {
+    profiles.${userSettings.username} = {
       search.engines = {
         "Nix Packages" = {
           urls = [
@@ -37,4 +38,5 @@
       ];
     };
   };
+  stylix.targets.firefox.profileNames = ["${userSettings.username}"];
 }
