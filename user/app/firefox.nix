@@ -29,6 +29,22 @@
           icon = "${pkgs.nixos-icons}/share/icons/hicolor/scalable/apps/nix-snowflake.svg";
           definedAliases = ["@np"];
         };
+        "PCGamingWiki" = {
+          urls = [
+            {
+              template = "https://www.pcgamingwiki.com/w/index.php";
+              params = [
+                {
+                  name = "search";
+                  value = "{searchTerms}";
+                }
+              ];
+            }
+          ];
+
+          icon = "https://static.pcgamingwiki.com/favicons/pcgamingwiki.png";
+          definedAliases = ["@pc"];
+        };
       };
       search.force = true;
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [
