@@ -2,18 +2,13 @@
 
 {
   imports = [
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
-    ./../../user/app
-    ./../../user/wm/hyprland
     ./../../user/shell/zsh.nix
-    ./../../user/style/stylix.nix
-    # ./../../user/wm/plasma/plasma.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
   # manage.
   home.username = "${userSettings.username}";
-  home.homeDirectory = "/home/${userSettings.username}";
+  home.homeDirectory = "/Users/${userSettings.username}";
 
   # This value determines the Home Manager release that your configuration is
   # compatible with. This helps avoid breakage when a new Home Manager release
@@ -77,7 +72,7 @@
   #  /etc/profiles/per-user/gege/etc/profile.d/hm-session-vars.sh
   #
   home.sessionVariables = {
-    EDITOR = "nvim";
+    EDITOR = "vim";
   };
 
   # MIME types
