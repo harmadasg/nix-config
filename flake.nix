@@ -8,6 +8,10 @@
       url = "github:nix-community/home-manager/master";
       inputs.nixpkgs.follows = "nixpkgs";
     };
+    nix-darwin = {
+      url = "github:nix-darwin/nix-darwin";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
     plasma-manager = {
       url = "github:nix-community/plasma-manager";
       inputs.nixpkgs.follows = "nixpkgs";
@@ -25,6 +29,7 @@
   outputs = inputs @ {
     self,
     nixpkgs,
+    nix-darwin,
     home-manager,
     ...
   }:
@@ -46,7 +51,7 @@
       pkgs = import nixpkgs commonArgs;
     in {
       nixosConfigurations = {
-        nixos = nixpkgs.lib.nixosSystem {
+        ${systemSettings.hostname} = nixpkgs.lib.nixosSystem {
           inherit pkgs;
           specialArgs = {
             inherit inputs userSettings systemSettings;
@@ -55,12 +60,21 @@
         };
       };
       homeConfigurations = {
-        gege = home-manager.lib.homeManagerConfiguration {
+        ${userSettings.username} = home-manager.lib.homeManagerConfiguration {
           inherit pkgs;
           extraSpecialArgs = {
             inherit inputs userSettings systemSettings;
           };
           modules = [./profiles/${profile}/home.nix];
+        };
+      };
+      darwinConfigurations = {
+        ${systemSettings.hostname} = nix-darwin.lib.darwinSystem {
+          inherit pkgs;
+          specialArgs = {
+            inherit inputs self userSettings systemSettings;
+          };
+          modules = [./profiles/${profile}/configuration.nix];
         };
       };
     };
