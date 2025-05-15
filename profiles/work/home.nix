@@ -2,7 +2,7 @@
 
 {
   imports = [
-    ./../../user/shell/zsh.nix
+    ./../../user/shell
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
@@ -71,9 +71,9 @@
   #
   #  /etc/profiles/per-user/gege/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    EDITOR = "vim";
-  };
+  # home.sessionVariables = {
+  #   EDITOR = "vim";
+  # };
 
   # MIME types
   # xdg.mimeApps.enable = true;

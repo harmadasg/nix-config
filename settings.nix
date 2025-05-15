@@ -21,6 +21,7 @@
     # window manager type (hyprland or x11) translator
     wmType = if ((wm == "hyprland") || (wm == "plasma")) then "wayland" else "x11";
     browser = "firefox"; # Preferred browser
+    shell = "zsh";
     term = "kitty"; # Default terminal command;
     font = "Caskaydia Cove Nerd Font"; # Selected font
     editor = "nvim"; # Default editor;

@@ -8,6 +8,13 @@
     inputs.nixvim.homeManagerModules.nixvim
   ];
 
+  programs.${userSettings.shell} = {
+    shellAliases = {
+      vi = "nvim";
+      vim = "nvim";
+    };
+  };
+
   programs.nixvim = {
     # This just enables NixVim.
     # If all you have is this, then there will be little visible difference

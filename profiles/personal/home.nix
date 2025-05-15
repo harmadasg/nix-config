@@ -5,7 +5,7 @@
     inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ./../../user/app
     ./../../user/wm/hyprland
-    ./../../user/shell/zsh.nix
+    ./../../user/shell
     ./../../user/style/stylix.nix
     # ./../../user/wm/plasma/plasma.nix
   ];
@@ -76,9 +76,9 @@
   #
   #  /etc/profiles/per-user/gege/etc/profile.d/hm-session-vars.sh
   #
-  home.sessionVariables = {
-    EDITOR = "nvim";
-  };
+  # home.sessionVariables = {
+  #   EDITOR = "vim";
+  # };
 
   # MIME types
   # xdg.mimeApps.enable = true;

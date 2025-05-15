@@ -1,14 +1,6 @@
 { config, pkgs, ... }:
 
 {
-  home.packages = with pkgs; [
-    fastfetch
-    fd
-    ripgrep
-    eza
-    bat
-  ];
-
   programs.zsh = {
     enable = true;
     enableCompletion = true;
@@ -28,13 +20,6 @@
         file = "powerlevel10k.zsh-theme";
       }
     ];
-
-    shellAliases = {
-      ll = "ls -alF";
-      ".." = "cd ..";
-      vi = "nvim";
-      vim = "nvim";
-    };
 
     history = {
       size = 10000;
