@@ -2,6 +2,8 @@
 
 {
   imports = [
+    inputs.mac-app-util.homeManagerModules.default
+    ./../../user/app/kitty.nix
     ./../../user/shell
   ];
 
