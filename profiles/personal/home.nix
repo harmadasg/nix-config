@@ -6,7 +6,7 @@
     ./../../user/app
     ./../../user/wm/hyprland
     ./../../user/shell
-    ./../../user/style/stylix.nix
+    ./../../user/style
     # ./../../user/wm/plasma/plasma.nix
   ];
 

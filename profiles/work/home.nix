@@ -4,7 +4,10 @@
   imports = [
     inputs.mac-app-util.homeManagerModules.default
     ./../../user/app/kitty.nix
+    ./../../user/app/neovim.nix
     ./../../user/shell
+    ./../../user/style/base.nix
+    ./../../user/style/mac.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
