@@ -51,6 +51,7 @@
         ublock-origin
         sponsorblock
         frankerfacez
+        i-dont-care-about-cookies
       ];
     };
   };

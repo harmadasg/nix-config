@@ -1,6 +1,9 @@
-{ config, lib, pkgs, ...  }:
-
 {
+  config,
+  lib,
+  pkgs,
+  ...
+}: {
   stylix = {
     base16Scheme = "${pkgs.base16-schemes}/share/themes/catppuccin-mocha.yaml";
     image = ./../user/assets/catppuccin-mocha.jpg;
@@ -16,5 +19,9 @@
   programs.nixvim.colorschemes.catppuccin = {
     enable = true;
     settings.flavour = "mocha";
+  };
+
+  home.sessionVariables = {
+    ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE = "fg=#45475a";
   };
 }

@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, lib, ... }:
 
 {
   programs.zsh = {
@@ -6,7 +6,18 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
-    initContent = "fastfetch";
+    
+    initContent = let
+      zshConfigEarlyInit = lib.mkOrder 500 ''
+        if [[ $(tput lines) -gt 50 ]]; then
+          fastfetch
+        fi 
+      '';
+      zshConfig = lib.mkOrder 1000 ''
+        # put stuff here
+      '';
+    in
+      lib.mkMerge [ zshConfigEarlyInit zshConfig ];
 
     plugins = [
       {
@@ -28,7 +39,10 @@
 
     oh-my-zsh = {
       enable = true;
-      plugins = [ "git" ];
+      plugins = [
+        "git"
+        "colored-man-pages"
+      ];
     };
   };
 }

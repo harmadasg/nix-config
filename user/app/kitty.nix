@@ -1,4 +1,4 @@
-{ config, pkgs, ... }:
+{ config, pkgs, userSettings, ... }:
 
 {
   programs.kitty = {
@@ -14,5 +14,11 @@
       tab_activity_symbol = "*";
     };
   };
+  
+    programs.${userSettings.shell} = {
+      shellAliases = {
+        ssh = "kitty +kitten ssh";
+      };
+    };
   
 }
