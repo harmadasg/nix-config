@@ -11,12 +11,13 @@
   ];
 
   home.packages = with pkgs; [
-    xfce.thunar
     wl-clipboard
     hyprshot
     swaynotificationcenter
     cliphist
   ];
+
+  services.hyprpolkitagent.enable = true;
 
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
