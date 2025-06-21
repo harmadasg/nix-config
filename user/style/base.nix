@@ -6,6 +6,7 @@
     ./../../themes/${userSettings.theme}.nix
   ];
 
+  fonts.fontconfig.enable = true;
   stylix = {
     enable = true;
 
