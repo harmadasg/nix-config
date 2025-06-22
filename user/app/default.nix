@@ -7,6 +7,7 @@
     ./kitty.nix
     ./neovim.nix
     ./firefox.nix
+    ./element.nix
     ./ranger.nix
     ./mpv.nix
     ./git.nix

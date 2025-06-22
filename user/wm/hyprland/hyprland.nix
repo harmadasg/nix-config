@@ -18,6 +18,11 @@
   ];
 
   services.hyprpolkitagent.enable = true;
+  xdg.portal = {
+    extraPortals = with pkgs; [
+      xdg-desktop-portal-gtk # https://wiki.archlinux.org/title/XDG_Desktop_Portal > 4.3 Poor font rendering in GTK apps on KDE Plasma
+    ];
+  };
 
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
