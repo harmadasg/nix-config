@@ -1,4 +1,6 @@
 {pkgs, ...}: {
+
+  programs.file-roller.enable = true;
   programs.thunar = {
     enable = true;
     plugins = with pkgs.xfce; [
