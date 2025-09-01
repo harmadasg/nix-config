@@ -19,7 +19,6 @@
     ./../../system/app/sunshine.nix
     ./../../system/app/steam.nix
     ./../../system/app/thunar.nix
-    # ./../../system/wm/plasma.nix
     ./../../system/wm/hyprland.nix
   ];
 

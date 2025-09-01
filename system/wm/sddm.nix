@@ -21,8 +21,10 @@ in
     defaultSession = "hyprland";
     sddm = {
       enable = true;
+      package = pkgs.kdePackages.sddm;
       wayland = {
         enable = true;
+        # TODO move to a more lightweight DM like greetd or ly
         compositor = "kwin";
       }; 
       autoNumlock = true;

@@ -7,7 +7,6 @@
     ./../../user/wm/hyprland
     ./../../user/shell
     ./../../user/style
-    # ./../../user/wm/plasma/plasma.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
