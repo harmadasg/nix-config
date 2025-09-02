@@ -24,7 +24,7 @@ with config.lib.stylix.colors;
       # BACKGROUND
       background = {
           monitor = "";
-          path = "${./../../assets/${userSettings.theme}.jpg}";
+          path = "${./../../resources/${userSettings.theme}.jpg}";
           blur_passes = 2;
           # stylix takes care, should rework hyprlock config anyway
           # color = "$base";
@@ -58,7 +58,7 @@ with config.lib.stylix.colors;
       # USER AVATAR
       image = {
           monitor = "DP-4";
-          path = "${./../../assets/face}";
+          path = "${./../../resources/face}";
           size = 96;
           border_color = "$accent";
 

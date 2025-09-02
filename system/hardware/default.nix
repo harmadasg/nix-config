@@ -8,5 +8,6 @@
     ./graphics.nix
     ./networking.nix
     ./sound.nix
+    ./power.nix
   ];
 }

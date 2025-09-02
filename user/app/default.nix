@@ -13,5 +13,6 @@
     ./git.nix
     ./lutris.nix
     ./idea.nix
+    ./overskride.nix
   ];
 }
