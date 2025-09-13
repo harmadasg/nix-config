@@ -55,6 +55,11 @@
         "HDMI-A-1, disable"
       ];
 
+      # unscale XWayland
+      xwayland = {
+        force_zero_scaling = true;
+      };
+
       ###################
       ### MY PROGRAMS ###
       ###################

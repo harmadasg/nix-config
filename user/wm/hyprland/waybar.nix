@@ -215,7 +215,7 @@
           menu-actions = {
             logout = "hyprctl dispatch exit";
             lock = "hyprlock";
-            shutdown = "shutdown";
+            shutdown = "shutdown -h now";
             reboot = "reboot";
             suspend = "systemctl suspend";
             hibernate = "systemctl hibernate";
