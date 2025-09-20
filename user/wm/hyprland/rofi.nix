@@ -5,7 +5,6 @@
 
   programs.rofi = {
     enable = true;
-    package = pkgs.rofi-wayland;
     cycle = true;
     extraConfig = {
       modi = "drun,window,combi";
