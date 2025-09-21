@@ -9,7 +9,7 @@
   imports = [
     # Include the results of the hardware scan.
     ./../../system/hardware-configuration.nix
-    ./../../system/wm/sddm.nix
+    ./../../system/wm/greetd.nix
     ./../../system/hardware
     ./../../system/bin/phoenix.nix
     ./../../system/misc/i18n.nix

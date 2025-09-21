@@ -28,7 +28,10 @@
     enable = true; # enable Hyprland
 
     # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
-    systemd.variables = ["--all"];
+    systemd = {
+      enable = false;
+      # variables = ["--all"];
+    };
 
     # Hyprland configuration written in Nix. Entries with the same key should be written as lists.
     # Variables' and colors' names should be quoted. See https://wiki.hyprland.org for more examples.
@@ -83,8 +86,8 @@
       # exec-once = nm-applet &
       # exec-once = waybar & hyprpaper & firefox
       exec-once = [
-        "wl-paste --type text --watch cliphist store" # Stores only text data
-        "wl-paste --type image --watch cliphist store" # Stores only image data
+        "uwsm app -- wl-paste --type text --watch cliphist store" # Stores only text data
+        "uwsm app -- wl-paste --type image --watch cliphist store" # Stores only image data
       ];
 
       #############################
@@ -224,21 +227,21 @@
       # Example binds, see https://wiki.hyprland.org/Configuring/Binds/ for more
       bind =
         [
-          "$mainMod, return, exec, $terminal"
-          "$mainMod, F, exec, firefox"
+          "$mainMod, return, exec, uwsm app -- $terminal"
+          "$mainMod, F, exec, uwsm app -- firefox"
           "$mainMod, C, killactive,"
           "$mainMod, M, exit,"
-          "$mainMod, E, exec, $fileManager"
+          "$mainMod, E, exec, uwsm app -- $fileManager"
           "$mainMod, B, togglefloating,"
-          "$mainMod, space, exec, $menu"
-          "$mainMod, V, exec, $clipboard"
-          "$mainMod, L, exec, hyprlock"
+          "$mainMod, space, exec, uwsm app -- $menu"
+          "$mainMod, V, exec, uwsm app -- $clipboard"
+          "$mainMod, L, exec, uwsm app -- hyprlock"
           "$mainMod, P, pseudo," # dwindle
           "$mainMod, J, togglesplit," # dwindle
 
           # Screenshot
-          ", PRINT, exec, hyprshot -m window"
-          "shift, PRINT, exec, hyprshot -m region"
+          ", PRINT, exec, uwsm app -- hyprshot -m window"
+          "shift, PRINT, exec, uwsm app -- hyprshot -m region"
 
           # Move focus with mainMod + arrow keys
           "$mainMod, left, movefocus, l"
@@ -319,3 +322,4 @@
     };
   };
 }
+
