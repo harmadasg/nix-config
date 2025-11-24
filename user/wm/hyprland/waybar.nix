@@ -9,6 +9,7 @@
 
     settings = [
       {
+        output = "DP-4";
         # "layer": "top"; # Waybar at top layer
         # "position": "bottom"; # Waybar position (top|bottom|left|right)
         height = 30; # Waybar height (to be removed for auto height)
@@ -222,7 +223,7 @@
           };
         };
         "upower" = {
-          model = "G Pro Wireless Gaming Mouse";
+          model = "Logitech G Pro";
           format = "󰍽 {}";
           show-icon = false;
           tooltip = false;
