@@ -1,4 +1,13 @@
-{pkgs, ...}: {
+{
+  pkgs,
+  config,
+  ...
+}: let
+  mainMonitor = config.display.mainMonitor;
+in {
+  imports = [
+    ./../../common/monitor-utils.nix
+  ];
 
   programs = {
     steam = {
@@ -19,9 +28,9 @@
       };
       args = [
         "--rt"
-        "--prefer-output HDMI-A-1"
-        "--output-width 1920"
-        "--output-height 1080"
+        "--prefer-output ${mainMonitor.output}"
+        "--output-width ${mainMonitor.width}"
+        "--output-height ${mainMonitor.height}"
         "--xwayland-count 2"
       ];
     };

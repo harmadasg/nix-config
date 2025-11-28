@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   imports = [
@@ -52,11 +53,7 @@
       ################
 
       # See https://wiki.hyprland.org/Configuring/Monitors/
-      monitor = [
-        "DP-1, 2560x1440@144, 0x0, 1"
-        "DP-4, 3840x2160, 2560x0, 1.5"
-        "HDMI-A-1, disable"
-      ];
+      monitor = config.display.monitors;
 
       # unscale XWayland
       xwayland = {

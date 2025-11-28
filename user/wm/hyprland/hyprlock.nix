@@ -33,7 +33,7 @@ with config.lib.stylix.colors;
       label = [
         {
           # TIME
-          monitor = "DP-4";
+          monitor = config.display.mainMonitor.output;
           text = "cmd[update:30000] echo \"$(date +\"%R\")\"";
           color = "$text";
           font_size = 90;
@@ -44,7 +44,7 @@ with config.lib.stylix.colors;
         }
         {
           # DATE 
-          monitor = "DP-4";
+          monitor = config.display.mainMonitor.output;
           text = "cmd[update:43200000] echo \"$(date +\"%A, %d %B %Y\")\"";
           color = "$text";
           font_size = 25;
@@ -57,7 +57,7 @@ with config.lib.stylix.colors;
 
       # USER AVATAR
       image = {
-          monitor = "DP-4";
+          monitor = config.display.mainMonitor.output;
           path = "${./../../resources/face}";
           size = 96;
           border_color = "$accent";
@@ -69,7 +69,7 @@ with config.lib.stylix.colors;
 
       # INPUT FIELD
       input-field = {
-        monitor = "DP-4";
+        monitor = config.display.mainMonitor.output;
         size = "300, 60";
         outline_thickness = 4;
         dots_size = 0.2; # Scale of input-field height, 0.2 - 0.8

@@ -1,6 +1,7 @@
 {
   pkgs,
   inputs,
+  config,
   ...
 }: {
   programs.waybar = {
@@ -9,7 +10,7 @@
 
     settings = [
       {
-        output = "DP-4";
+        output = config.display.mainMonitor.output;
         # "layer": "top"; # Waybar at top layer
         # "position": "bottom"; # Waybar position (top|bottom|left|right)
         height = 30; # Waybar height (to be removed for auto height)

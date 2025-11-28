@@ -7,5 +7,6 @@
     ./hyprlock.nix
     ./hypridle.nix
     ./rofi.nix
+    ./../../../common/monitor-utils.nix
   ];
 }

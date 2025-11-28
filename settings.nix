@@ -9,6 +9,35 @@
     bootMountPath = "/boot"; # mount path for efi boot partition; only used for uefi boot mode
     grubDevice = ""; # device identifier for grub; only used for legacy (bios) boot mode
     gpuType = "amd"; # amd, intel or nvidia; only makes some slight mods for amd at the moment
+    monitors = [
+      {
+        name = "secondary";
+        output = "DP-1";
+        width = "2560";
+        height = "1440";
+        refresh = "144";
+        x = "0";
+        y = "0";
+        scale = "1.0";
+        enabled = true;
+      }
+      {
+        name = "main";
+        output = "DP-4";
+        width = "3840";
+        height = "2160";
+        refresh = "60";
+        x = "2560";
+        y = "0";
+        scale = "1.5";
+        enabled = true;
+      }
+      {
+        name = "dummy";
+        output = "HDMI-A-1";
+        enabled = false;
+      }
+    ];
   };
 
   userSettings = rec {
