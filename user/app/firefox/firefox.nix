@@ -8,6 +8,10 @@
   programs.firefox = {
     enable = true;
     profiles.${userSettings.username} = {
+      bookmarks = {
+        force = true;
+        settings = import ./bookmarks.nix;
+      };
       search.engines = {
         "Nix Packages" = {
           urls = [

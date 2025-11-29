@@ -6,7 +6,7 @@
     ./btop.nix
     ./kitty.nix
     ./neovim.nix
-    ./firefox.nix
+    ./firefox
     ./element.nix
     ./ranger.nix
     ./mpv.nix
