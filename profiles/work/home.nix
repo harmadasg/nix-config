@@ -3,6 +3,7 @@
 {
   imports = [
     inputs.mac-app-util.homeManagerModules.default
+    ./../../user/app/firefox
     ./../../user/app/kitty.nix
     ./../../user/app/neovim.nix
     ./../../user/shell
