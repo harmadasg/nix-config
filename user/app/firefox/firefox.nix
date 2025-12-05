@@ -7,6 +7,9 @@
 }: {
   programs.firefox = {
     enable = true;
+    policies = {
+      DisplayBookmarksToolbar = "always";
+    };
     profiles.${userSettings.username} = {
       settings = {
         "browser.startup.page" = 3;

@@ -595,6 +595,10 @@
         name = "Halt and Catch Fire Syllabus - Halt and Catch Fire Syllabus";
         url = "https://bits.ashleyblewer.com/halt-and-catch-fire-syllabus/";
       }
+      {
+        name = "Bookmarks Menu vs Other Bookmarks? ";
+        url = "https://www.reddit.com/r/firefox/comments/ofex58/bookmarks_menu_vs_other_bookmarks/";
+      }
     ];
   }
   {
