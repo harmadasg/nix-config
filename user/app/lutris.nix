@@ -1,4 +1,5 @@
 {pkgs, ...}: {
+  # should use lutris module instead
   home.packages = [
     (pkgs.lutris.override {
       extraPkgs = pkgs: [

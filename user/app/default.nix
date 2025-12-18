@@ -12,6 +12,7 @@
     ./mpv.nix
     ./git.nix
     ./lutris.nix
+    ./heroic.nix
     ./idea.nix
     ./overskride.nix
   ];
