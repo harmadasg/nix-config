@@ -6,6 +6,7 @@
     enableCompletion = true;
     autosuggestion.enable = true;
     syntaxHighlighting.enable = true;
+    dotDir = config.home.homeDirectory;
     
     initContent = let
       zshConfigEarlyInit = lib.mkOrder 500 ''

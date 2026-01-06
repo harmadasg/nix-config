@@ -296,25 +296,21 @@
       ### WINDOWS AND WORKSPACES ###
       ##############################
 
-      # See https://wiki.hyprland.org/Configuring/Window-Rules/ for more
-      # See https://wiki.hyprland.org/Configuring/Workspace-Rules/ for workspace rules
+      # See https://wiki.hypr.land/Configuring/Window-Rules/ for more
+      # See https://wiki.hypr.land/Configuring/Workspace-Rules/ for workspace rules
 
-      # Example windowrule v1
-      # windowrule = float, ^(kitty)$
-
-      # Example windowrule v2
-      # windowrulev2 = float,class:^(kitty)$,title:^(kitty)$
-
-      windowrulev2 = [
+      windowrule = [
         # Ignore maximize requests from apps. You'll probably like this.
-        "suppressevent maximize, class:.*"
-
-        # Fix some dragging issues with XWayland
-        "nofocus,class:^$,title:^$,xwayland:1,floating:1,fullscreen:0,pinned:0"
-
+        # For idle_inhibit = fullscreen see the below issues
         # https://github.com/hyprwm/Hyprland/issues/9170
         # https://github.com/hyprwm/Hyprland/issues/6568
-        "idleinhibit fullscreen, class:.*"
+        "match:class .*, suppress_event maximize, idle_inhibit fullscreen"
+
+        # Fix some dragging issues with XWayland
+        "match:class ^$, match:title ^$, match:xwayland true, match:float true, match:fullscreen false, match:pin false, no_focus on"
+
+        # Hyprland-run windowrule
+        "match:class hyprland-run, move 20 monitor_h-120, float yes"
       ];
     };
   };
