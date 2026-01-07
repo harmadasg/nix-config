@@ -299,6 +299,10 @@
         name = "Apache Kafka® KRaft Abandons the Zoo(Keeper): Part 1";
         url = "https://www.instaclustr.com/blog/apache-kafka-kraft-abandons-the-zookeeper-part-1-partitions-and-data-performance/";
       }
+      {
+        name = "Kafka to Iceberg - Exploring the Options";
+        url = "https://rmoff.net/2025/08/18/kafka-to-iceberg-exploring-the-options/";
+      }
     ];
   }
 ]

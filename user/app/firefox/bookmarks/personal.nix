@@ -238,8 +238,8 @@
         url = "https://github.com/privateersclub/wiki";
       }
       {
-        name = "PCGamingWiki PCGW - an encyclopedia of PC game fixes";
-        url = "https://www.pcgamingwiki.com/wiki/Home";
+        name = "Pirated Games Mega Thread";
+        url = "https://rentry.org/pgames";
       }
       {
         name = "gamefaqs";
