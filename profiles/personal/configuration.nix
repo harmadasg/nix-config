@@ -15,7 +15,6 @@
     ./../../system/misc/i18n.nix
     ./../../system/misc/console.nix
     ./../../system/security
-    ./../../system/app/flatpak.nix
     ./../../system/app/sunshine.nix
     ./../../system/app/steam.nix
     ./../../system/app/thunar.nix

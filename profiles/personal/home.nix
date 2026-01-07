@@ -2,7 +2,6 @@
 
 {
   imports = [
-    inputs.nix-flatpak.homeManagerModules.nix-flatpak
     ./../../user/app
     ./../../user/wm/hyprland
     ./../../user/shell

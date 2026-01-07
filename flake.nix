@@ -17,7 +17,6 @@
       inputs.nixpkgs.follows = "nixpkgs";
     };
     nur.url = "github:nix-community/nur";
-    nix-flatpak.url = "github:gmodena/nix-flatpak";
     stylix.url = "github:danth/stylix";
     # until https://github.com/nix-community/home-manager/issues/1341 is fixed
     # until https://github.com/nix-darwin/nix-darwin/pull/1396 is fixed

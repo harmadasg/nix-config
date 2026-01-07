@@ -2,8 +2,11 @@
 
 {
   imports = [
-    ./flatpak.nix
     ./btop.nix
+    ./qbittorrent.nix
+    ./portfolio.nix
+    ./calibre.nix
+    ./discord.nix
     ./kitty.nix
     ./neovim.nix
     ./firefox
