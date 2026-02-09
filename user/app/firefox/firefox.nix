@@ -59,6 +59,7 @@
         sponsorblock
         frankerfacez
         i-dont-care-about-cookies
+        multi-account-containers
       ];
     };
   };
