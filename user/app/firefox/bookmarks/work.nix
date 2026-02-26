@@ -303,6 +303,10 @@
         name = "Kafka to Iceberg - Exploring the Options";
         url = "https://rmoff.net/2025/08/18/kafka-to-iceberg-exploring-the-options/";
       }
+      {
+        name = "Kraft Leader Election : Deep dive";
+        url = "https://medium.com/@prakashpsgcse/kraft-leader-election-deep-dive-676ff2f11474";
+      }
     ];
   }
 ]

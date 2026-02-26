@@ -15,6 +15,7 @@
     ./../../user/app/ranger.nix
     ./../../user/app/btop.nix
     ./../../user/app/obsidian.nix
+    ./../../user/app/gemini-cli.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
