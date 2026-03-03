@@ -307,6 +307,14 @@
         name = "Kraft Leader Election : Deep dive";
         url = "https://medium.com/@prakashpsgcse/kraft-leader-election-deep-dive-676ff2f11474";
       }
+      {
+        name = "Demystifying Raft in Kafka: KRaft Deep Dive";
+        url = "https://medium.com/@prakashpsgcse/demystifying-raft-in-kafka-kraft-deep-dive-ae23b311e28d";
+      }
+      {
+        name = "Exploring Apache Kafka Internals and Codebase";
+        url = "https://cefboud.com/posts/exploring-kafka-internals/";
+      }
     ];
   }
 ]
