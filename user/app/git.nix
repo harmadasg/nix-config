@@ -7,5 +7,6 @@
         user.name = "Gergely Harmadas";
         user.email = "harmadasg@gmail.com";
       };
+      signing.format = "openpgp"; # to keep backward compatibility with home state version 
   };
 }
