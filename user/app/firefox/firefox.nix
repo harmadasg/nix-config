@@ -10,6 +10,7 @@
     policies = {
       DisplayBookmarksToolbar = "always";
     };
+    configPath = "${config.xdg.configHome}/mozilla/firefox";
     profiles.${userSettings.username} = {
       settings = {
         "browser.startup.page" = 3;
