@@ -26,7 +26,6 @@
 
   gtk = {
     enable = true;
-    gtk4.theme = config.gtk.theme; # to keep backward compatibility wit home state version
     iconTheme = {
       package = pkgs.adwaita-icon-theme;
       name = "Adwaita";

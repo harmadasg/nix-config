@@ -7,7 +7,7 @@
   # Display manager
   # Hyprlock greetd backend might be available in the future
   # https://github.com/hyprwm/hyprlock/pull/731
-  programs.regreet = {
+  services.displayManager.regreet = {
     enable = true;
     settings = {
       background = {

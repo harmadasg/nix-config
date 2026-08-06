@@ -27,6 +27,7 @@
 
   wayland.windowManager.hyprland = {
     enable = true; # enable Hyprland
+    configType = "hyprlang";
 
     # https://wiki.hyprland.org/Nix/Hyprland-on-Home-Manager/#programs-dont-work-in-systemd-services-but-do-on-the-terminal
     systemd = {
@@ -164,7 +165,6 @@
 
       # See https://wiki.hyprland.org/Configuring/Dwindle-Layout/ for more
       dwindle = {
-        pseudotile = true; # Master switch for pseudotiling. Enabling is bound to mainMod + P in the keybinds section below
         preserve_split = true; # You probably want this
       };
 
@@ -234,7 +234,7 @@
           "$mainMod, V, exec, uwsm app -- $clipboard"
           "$mainMod, L, exec, uwsm app -- hyprlock"
           "$mainMod, P, pseudo," # dwindle
-          "$mainMod, J, togglesplit," # dwindle
+          "$mainMod, J, layoutmsg, togglesplit," # dwindle
 
           # Screenshot
           ", PRINT, exec, uwsm app -- hyprshot -m window"
