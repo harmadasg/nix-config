@@ -1,4 +1,6 @@
-{pkgs, self, userSettings, ...}: {
+{pkgs, self, userSettings, ...}: let
+  homeDir = "/Users/${userSettings.username}";
+in {
   # List packages installed in system profile. To search by name, run:
   # $ nix-env -qaP | grep wget
   environment.systemPackages = with pkgs; [
@@ -22,6 +24,11 @@
     primaryUser = "${userSettings.username}";
     defaults.dock.autohide = true;
   };
+
+  # https://discourse.nixos.org/t/automatically-launching-macos-applications-on-login/19823
+  system.activationScripts.postActivation.text = ''
+    osascript -e 'tell application "System Events" to make login item at end with properties {path:"${homeDir}/Applications/Home Manager Trampolines/Maccy.app", hidden:false}' 2>/dev/null || true
+  '';
 
   # Used for backwards compatibility, please read the changelog before changing.
   # $ darwin-rebuild changelog

@@ -15,6 +15,9 @@
     ./../../user/app/ranger.nix
     ./../../user/app/btop.nix
     ./../../user/app/obsidian.nix
+    ./../../user/app/kubectl.nix
+    ./../../user/app/colima.nix
+    ./../../user/app/dev-tools.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
