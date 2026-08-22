@@ -13,12 +13,6 @@
     # };
     polarity = "dark";
 
-    targets.nixvim.enable = false;
-  };
-
-  programs.nixvim.colorschemes.catppuccin = {
-    enable = true;
-    settings.flavour = "mocha";
   };
 
   home.sessionVariables = {

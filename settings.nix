@@ -53,6 +53,6 @@
     shell = "zsh";
     term = "kitty"; # Default terminal command;
     font = "Caskaydia Cove Nerd Font"; # Selected font
-    editor = "nvim"; # Default editor;
+    editor = "vim"; # Default editor;
   };
 }
