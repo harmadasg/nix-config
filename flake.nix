@@ -12,11 +12,6 @@
       url = "github:nix-darwin/nix-darwin";
       inputs.nixpkgs.follows = "nixpkgs";
     };
-    nixvim = {
-      url = "github:nix-community/nixvim";
-      # See https://github.com/nix-community/nixvim/commit/f58f0568829de0cac5183844e822c697dd0aeeb8
-      # inputs.nixpkgs.follows = "nixpkgs";
-    };
     nur.url = "github:nix-community/nur";
     stylix.url = "github:danth/stylix";
     # until https://github.com/nix-community/home-manager/issues/1341 is fixed
