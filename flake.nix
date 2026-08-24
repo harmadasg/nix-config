@@ -17,6 +17,10 @@
     # until https://github.com/nix-community/home-manager/issues/1341 is fixed
     # until https://github.com/nix-darwin/nix-darwin/pull/1396 is fixed
     mac-app-util.url = "github:hraban/mac-app-util";
+    nixarr = {
+      url = "github:nix-media-server/nixarr";
+      inputs.nixpkgs.follows = "nixpkgs";
+    };
   };
 
   outputs = inputs @ {
@@ -51,6 +55,13 @@
           };
           modules = [./profiles/${profile}/configuration.nix];
         };
+        vm = nixpkgs.lib.nixosSystem {
+          inherit pkgs;
+          specialArgs = {
+            inherit inputs userSettings systemSettings;
+          };
+          modules = [./profiles/personal/vm.nix];
+        };                                              
       };
       homeConfigurations = {
         ${userSettings.username} = home-manager.lib.homeManagerConfiguration {
