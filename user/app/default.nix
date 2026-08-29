@@ -18,5 +18,6 @@
     ./heroic.nix
     ./idea.nix
     ./overskride.nix
+    ./claude-code.nix
   ];
 }

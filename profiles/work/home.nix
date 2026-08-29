@@ -18,6 +18,7 @@
     ./../../user/app/kubectl.nix
     ./../../user/app/colima.nix
     ./../../user/app/dev-tools.nix
+    ./../../user/app/claude-code.nix
   ];
 
   # Home Manager needs a wofibit of information about you and the paths it should
