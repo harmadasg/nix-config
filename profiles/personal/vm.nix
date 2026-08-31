@@ -29,14 +29,21 @@
             host.port = config.nixarr.jellyfin.port;
             guest.port = config.nixarr.jellyfin.port;
           }
+          {
+            from = "host";
+            host.port = config.nixarr.radarr.port;
+            guest.port = config.nixarr.radarr.port;
+          }
         ];
         # Pass the physical media disk (/dev/sdc1) into the VM as a virtio-blk device.
         qemu.drives = lib.mkAfter [
           {
             name = "media-disk";
             file = "/dev/disk/by-id/ata-ST4000DM004-2CV104_ZFN01ZVB-part1";
-            driveExtraOpts.format = "raw";
-            driveExtraOpts.cache = "none"; # O_DIRECT; avoid double-buffering
+            driveExtraOpts = {
+              format = "raw";
+              cache  = "none"; # O_DIRECT; avoid double-buffering
+            };
           }
         ];
         # Mount the ext4 partition inside the guest and expose the two
@@ -59,6 +66,12 @@
             options = [ "bind" ];
             depends = [ "/mnt/disk1" ];
           };
+          "${config.nixarr.radarr.stateDir}" = {
+            device = "/mnt/disk1/config/radarr-config";
+            fsType = "none";
+            options = [ "bind" ];
+            depends = [ "/mnt/disk1" ];
+          };
         };
       };
     };
@@ -76,15 +89,33 @@
       enable = true;
       openFirewall = true;
     };
+    radarr = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
-  # To be compatible with the old jellyfin-linuxserver setup
-  services.jellyfin.configDir = lib.mkForce "${config.nixarr.jellyfin.stateDir}";
+  services = {
+    # To be compatible with the old jellyfin-linuxserver setup
+    jellyfin.configDir = lib.mkForce "${config.nixarr.jellyfin.stateDir}";
+    radarr.settings.auth = {
+      method   = "External";
+      required = "DisabledForLocalAddresses";
+    };
+  };
 
-  # Pin jellyfin's UID and its primary group's GID to the values used by the
-  # previous Docker-based deployment
-  users.users.jellyfin.uid = lib.mkForce 13013;
-  users.groups.media.gid   = lib.mkForce 13000;
+  # Pin UIDs/GIDs to match the previous Docker-based deployment
+  users = {
+    users = {
+      jellyfin.uid = lib.mkForce 13013;
+      radarr.uid   = lib.mkForce 13002;
+    };
+    groups.media.gid = lib.mkForce 13000;
+  };
+
+  environment.systemPackages = with pkgs; [
+    jq
+  ];
 
   system.stateVersion = "24.05";
 }
