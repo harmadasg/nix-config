@@ -12,51 +12,57 @@
 # QEMU_NET_OPTS="hostfwd=tcp::2222-:22" ./result/bin/run-nixos-vm
 # Then connect with ssh -p 2222 guest@localhost
 { config, inputs, lib, pkgs, ... }:
-{
-  imports = [
-    inputs.nixarr.nixosModules.default
+let
+  # Add a new *arr service here — everything else is derived automatically.
+  arrServices = [
+    { name = "radarr";   uid = 13002; }
+    { name = "sonarr";   uid = 13001; }
+    { name = "prowlarr"; uid = 13006; }
   ];
 
-  virtualisation = {
-    vmVariant = {
-      virtualisation = {
+  mkArrService = svc: {
+    virtualisation.vmVariant.virtualisation = {
+      forwardPorts = [{
+        from = "host";
+        host.port = config.nixarr.${svc.name}.port;
+        guest.port = config.nixarr.${svc.name}.port;
+      }];
+      fileSystems."${config.nixarr.${svc.name}.stateDir}" = {
+        device  = "/mnt/disk1/config/${svc.name}-config";
+        fsType  = "none";
+        options = [ "bind" ];
+        depends = [ "/mnt/disk1" ];
+      };
+    };
+    nixarr.${svc.name}                 = { enable = true; openFirewall = true; };
+    services.${svc.name}.settings.auth = { method = "External"; required = "DisabledForLocalAddresses"; };
+    users.users.${svc.name}.uid        = lib.mkForce svc.uid;
+  };
+in
+{
+  imports = [ inputs.nixarr.nixosModules.default ];
+
+  config = lib.mkMerge ([
+    {
+      virtualisation.vmVariant.virtualisation = {
         memorySize = 8192;
         diskSize = 4096;
         cores = 6;
-        forwardPorts = [
-          {
-            from = "host";
-            host.port = config.nixarr.jellyfin.port;
-            guest.port = config.nixarr.jellyfin.port;
-          }
-          {
-            from = "host";
-            host.port = config.nixarr.radarr.port;
-            guest.port = config.nixarr.radarr.port;
-          }
-          {
-            from = "host";
-            host.port = config.nixarr.sonarr.port;
-            guest.port = config.nixarr.sonarr.port;
-          }
-          {
-            from = "host";
-            host.port = config.nixarr.prowlarr.port;
-            guest.port = config.nixarr.prowlarr.port;
-          }
-        ];
+        forwardPorts = [{
+          from = "host";
+          host.port = config.nixarr.jellyfin.port;
+          guest.port = config.nixarr.jellyfin.port;
+        }];
         # Pass the physical media disk (/dev/sdc1) into the VM as a virtio-blk device.
-        qemu.drives = lib.mkAfter [
-          {
-            name = "media-disk";
-            file = "/dev/disk/by-id/ata-ST4000DM004-2CV104_ZFN01ZVB-part1";
-            driveExtraOpts = {
-              format = "raw";
-              cache  = "none"; # O_DIRECT; avoid double-buffering
-            };
-          }
-        ];
-        # Mount the ext4 partition inside the guest and expose the two
+        qemu.drives = lib.mkAfter [{
+          name = "media-disk";
+          file = "/dev/disk/by-id/ata-ST4000DM004-2CV104_ZFN01ZVB-part1";
+          driveExtraOpts = {
+            format = "raw";
+            cache  = "none"; # O_DIRECT; avoid double-buffering
+          };
+        }];
+        # Mount the ext4 partition inside the guest and expose the
         # jellyfin/nixarr paths via bind mounts (preserves the on-disk layout).
         fileSystems = {
           "/mnt/disk1" = {
@@ -65,97 +71,43 @@
             options = [ "noatime" ];
           };
           "${config.nixarr.jellyfin.stateDir}" = {
-            device = "/mnt/disk1/config/jellyfin-config";
-            fsType = "none";
+            device  = "/mnt/disk1/config/jellyfin-config";
+            fsType  = "none";
             options = [ "bind" ];
             depends = [ "/mnt/disk1" ];
           };
           "${config.nixarr.mediaDir}" = {
-            device = "/mnt/disk1/data/media";
-            fsType = "none";
-            options = [ "bind" ];
-            depends = [ "/mnt/disk1" ];
-          };
-          "${config.nixarr.radarr.stateDir}" = {
-            device = "/mnt/disk1/config/radarr-config";
-            fsType = "none";
-            options = [ "bind" ];
-            depends = [ "/mnt/disk1" ];
-          };
-          "${config.nixarr.sonarr.stateDir}" = {
-            device = "/mnt/disk1/config/sonarr-config";
-            fsType = "none";
-            options = [ "bind" ];
-            depends = [ "/mnt/disk1" ];
-          };
-          "${config.nixarr.prowlarr.stateDir}" = {
-            device = "/mnt/disk1/config/prowlarr-config";
-            fsType = "none";
+            device  = "/mnt/disk1/data/media";
+            fsType  = "none";
             options = [ "bind" ];
             depends = [ "/mnt/disk1" ];
           };
         };
       };
-    };
-  };
 
-  users.users.alice = {
-    isNormalUser = true;
-    extraGroups = [ "wheel" ]; # Enable ‘sudo’ for the user.
-    initialPassword = "test";
-  };
+      users.users.alice = {
+        isNormalUser    = true;
+        extraGroups     = [ "wheel" ]; # Enable 'sudo' for the user.
+        initialPassword = "test";
+      };
 
-  nixarr = {
-    enable = true;
-    jellyfin = {
-      enable = true;
-      openFirewall = true;
-    };
-    radarr = {
-      enable = true;
-      openFirewall = true;
-    };
-    sonarr = {
-      enable = true;
-      openFirewall = true;
-    };
-    prowlarr = {
-      enable = true;
-      openFirewall = true;
-    };
-  };
+      nixarr = {
+        enable = true;
+        jellyfin = { enable = true; openFirewall = true; };
+      };
 
-  services = {
-    # To be compatible with the old jellyfin-linuxserver setup
-    jellyfin.configDir = lib.mkForce "${config.nixarr.jellyfin.stateDir}";
-    radarr.settings.auth = {
-      method   = "External";
-      required = "DisabledForLocalAddresses";
-    };
-    sonarr.settings.auth = {
-      method   = "External";
-      required = "DisabledForLocalAddresses";
-    };
-    prowlarr.settings.auth = {
-      method   = "External";
-      required = "DisabledForLocalAddresses";
-    };
-  };
+      services.jellyfin.configDir = lib.mkForce "${config.nixarr.jellyfin.stateDir}"; # compat with old linuxserver setup
 
-  # Pin UIDs/GIDs to match the previous Docker-based deployment
-  users = {
-    users = {
-      jellyfin.uid = lib.mkForce 13013;
-      radarr.uid   = lib.mkForce 13002;
-      sonarr.uid   = lib.mkForce 13001;
-      prowlarr.uid = lib.mkForce 13006;
-    };
-    groups.media.gid = lib.mkForce 13000;
-  };
+      # Pin UIDs/GIDs to match the previous Docker-based deployment
+      users = {
+        users.jellyfin.uid = lib.mkForce 13013;
+        groups.media.gid   = lib.mkForce 13000;
+      };
 
-  environment.systemPackages = with pkgs; [
-    jq
-  ];
+      environment.systemPackages = with pkgs; [ jq ];
 
-  system.stateVersion = "24.05";
+      system.stateVersion = "24.05";
+    }
+  ] ++ map mkArrService arrServices
+  );
 }
