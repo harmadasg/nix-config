@@ -34,6 +34,11 @@
             host.port = config.nixarr.radarr.port;
             guest.port = config.nixarr.radarr.port;
           }
+          {
+            from = "host";
+            host.port = config.nixarr.sonarr.port;
+            guest.port = config.nixarr.sonarr.port;
+          }
         ];
         # Pass the physical media disk (/dev/sdc1) into the VM as a virtio-blk device.
         qemu.drives = lib.mkAfter [
@@ -72,6 +77,12 @@
             options = [ "bind" ];
             depends = [ "/mnt/disk1" ];
           };
+          "${config.nixarr.sonarr.stateDir}" = {
+            device = "/mnt/disk1/config/sonarr-config";
+            fsType = "none";
+            options = [ "bind" ];
+            depends = [ "/mnt/disk1" ];
+          };
         };
       };
     };
@@ -93,12 +104,20 @@
       enable = true;
       openFirewall = true;
     };
+    sonarr = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   services = {
     # To be compatible with the old jellyfin-linuxserver setup
     jellyfin.configDir = lib.mkForce "${config.nixarr.jellyfin.stateDir}";
     radarr.settings.auth = {
+      method   = "External";
+      required = "DisabledForLocalAddresses";
+    };
+    sonarr.settings.auth = {
       method   = "External";
       required = "DisabledForLocalAddresses";
     };
@@ -109,6 +128,7 @@
     users = {
       jellyfin.uid = lib.mkForce 13013;
       radarr.uid   = lib.mkForce 13002;
+      sonarr.uid   = lib.mkForce 13001;
     };
     groups.media.gid = lib.mkForce 13000;
   };
