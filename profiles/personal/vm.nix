@@ -39,6 +39,11 @@
             host.port = config.nixarr.sonarr.port;
             guest.port = config.nixarr.sonarr.port;
           }
+          {
+            from = "host";
+            host.port = config.nixarr.prowlarr.port;
+            guest.port = config.nixarr.prowlarr.port;
+          }
         ];
         # Pass the physical media disk (/dev/sdc1) into the VM as a virtio-blk device.
         qemu.drives = lib.mkAfter [
@@ -83,6 +88,12 @@
             options = [ "bind" ];
             depends = [ "/mnt/disk1" ];
           };
+          "${config.nixarr.prowlarr.stateDir}" = {
+            device = "/mnt/disk1/config/prowlarr-config";
+            fsType = "none";
+            options = [ "bind" ];
+            depends = [ "/mnt/disk1" ];
+          };
         };
       };
     };
@@ -108,6 +119,10 @@
       enable = true;
       openFirewall = true;
     };
+    prowlarr = {
+      enable = true;
+      openFirewall = true;
+    };
   };
 
   services = {
@@ -121,6 +136,10 @@
       method   = "External";
       required = "DisabledForLocalAddresses";
     };
+    prowlarr.settings.auth = {
+      method   = "External";
+      required = "DisabledForLocalAddresses";
+    };
   };
 
   # Pin UIDs/GIDs to match the previous Docker-based deployment
@@ -129,6 +148,7 @@
       jellyfin.uid = lib.mkForce 13013;
       radarr.uid   = lib.mkForce 13002;
       sonarr.uid   = lib.mkForce 13001;
+      prowlarr.uid = lib.mkForce 13006;
     };
     groups.media.gid = lib.mkForce 13000;
   };
