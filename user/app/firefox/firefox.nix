@@ -53,6 +53,15 @@
           icon = "https://static.pcgamingwiki.com/favicons/pcgamingwiki.png";
           definedAliases = ["@pc"];
         };
+        "Apache Jira" = {
+          urls = [
+            {
+              template = "https://issues.apache.org/jira/browse/{searchTerms}";
+            }
+          ];
+          icon = "https://www.apache.org/images/asflogo_horizontal_color.svg";
+          definedAliases = ["@aj"];
+        };
       };
       search.force = true;
       extensions.packages = with pkgs.nur.repos.rycee.firefox-addons; [

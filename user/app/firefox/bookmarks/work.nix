@@ -182,6 +182,14 @@
         name = "AngelikaLanger.com - Java Generics FAQs - Frequently Asked Questions - Angelika Langer Training/Consulting";
         url = "https://angelikalanger.com/GenericsFAQ/JavaGenericsFAQ.html";
       }
+      {
+        name = "On the benefits of stream buffering in Java";
+        url = "https://pzemtsov.github.io/2015/01/19/on-the-benefits-of-stream-buffering-in-Java.html";
+      }
+      {
+        name = "Weather dataset for the Hadoop book (remove 3 from the ftp url)";
+        url = "https://gist.github.com/ee08b397/5be96071330d8f564ef3";
+      }
     ];
   }
   {
@@ -314,6 +322,34 @@
       {
         name = "Exploring Apache Kafka Internals and Codebase";
         url = "https://cefboud.com/posts/exploring-kafka-internals/";
+      }
+      {
+        name = "Kafka Monthly Digest";
+        url = "https://developers.redhat.com/blog/2026/09/01/kafka-monthly-digest-august-2026#community_releases";
+      }
+      {
+        name = "Kafka Simulator";
+        url = "https://monedula.dev/kafka-simulator/";
+      }
+      {
+        name = "Kafka Connect Deep Dive – Converters and Serialization Explained";
+        url = "https://www.confluent.io/blog/kafka-connect-deep-dive-converters-serialization-explained/";
+      }
+      {
+        name = "Kafka Options Explorer";
+        url = "https://kafka-options-explorer.conduktor.io/";
+      }
+      {
+        name = "Inside the Apache Kafka Broker";
+        url = "https://developer.confluent.io/courses/architecture/broker/";
+      }
+      {
+        name = "Understand Kafka Network Communication and Thread Model";
+        url = "https://www.automq.com/blog/understand-kafka-network-communication-and-thread-model";
+      }
+      {
+        name = "Lessons learned modernizing Apache Kafka CI builds with Develocity and GitHub Actions";
+        url = "https://develocity.ai/events/modernizing-apache-kafka-ci-builds-develocity-github-actions-03-26/";
       }
     ];
   }
