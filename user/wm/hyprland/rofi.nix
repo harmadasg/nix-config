@@ -5,8 +5,8 @@
 
   programs.rofi = {
     enable = true;
-    cycle = true;
-    extraConfig = {
+    settings = {
+      cycle = true;
       modi = "drun,window,combi";
       icon-theme = "Oranchelo";
       show-icons = true;
