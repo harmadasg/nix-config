@@ -37,12 +37,6 @@
         config.allowUnfree = true;
         overlays = [
           inputs.nur.overlays.default
-          (final: prev: {
-            oranchelo-icon-theme = prev.oranchelo-icon-theme.overrideAttrs {
-              # FIXME: https://github.com/NixOS/nixpkgs/issues/380279
-              dontCheckForBrokenSymlinks = true;
-            };
-          })
         ];
       };
       pkgs = import nixpkgs commonArgs;
