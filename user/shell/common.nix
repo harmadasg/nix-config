@@ -7,6 +7,8 @@
     ripgrep
     eza
     bat
+    lnav
+    gh
   ];
 
   home.sessionVariables = {
